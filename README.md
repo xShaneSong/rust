@@ -1,0 +1,1 @@
+This repository is for learning the Rust programming language.
