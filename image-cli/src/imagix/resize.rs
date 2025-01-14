@@ -1,4 +1,4 @@
-use image::ImageFormat;
+use image::{ImageFormat, DynamicImage, ImageBuffer, Rgba};
 use std::path::PathBuf;
 use std::result::Result;
 use std::str::FromStr;
@@ -107,9 +107,8 @@ pub fn resize_image(size: u32, src_folder: &mut PathBuf) -> Result<(), ImagixErr
         .file_stem()
         .unwrap()
         .to_str()
-        .unwrap()
         .ok_or(std::io::ErrorKind::InvalidInput)
-        .map(|f| format!("{}.png", f))?;
+        .map(|f| format!("{}.png", f));
 
     // 构造目标文件夹路径
     // 例如，如果在源文件中不存/tmp，则创建它。
@@ -129,7 +128,7 @@ pub fn resize_image(size: u32, src_folder: &mut PathBuf) -> Result<(), ImagixErr
     let img = image::open(&src_folder)?;
     let scaled = img.thumbnail(size, size);
     let mut output = fs::File::create(&dest_folder)?;
-    scaled.write_to(&mut output, image::ImageOutputFormat::Png)?;
+    scaled.write_to(&mut output, ImageFormat::Png)?;
     println!(
         "Thumbnailed file: {:?} to size {}x{} in {}. Output file in {:?}",
         src_folder,
