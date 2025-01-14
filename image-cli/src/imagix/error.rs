@@ -1,4 +1,4 @@
-use image::error;
+use super::image::error;
 use std::convert::From;
 use std::{fmt, io};
 

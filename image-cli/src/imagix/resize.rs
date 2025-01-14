@@ -1,4 +1,4 @@
-use crate::image::ImageFormat;
+use super::image::ImageFormat;
 use std::path::PathBuf;
 use std::result::Result;
 use std::str::FromStr;
