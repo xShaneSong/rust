@@ -1,4 +1,4 @@
-use image::{ImageFormat, DynamicImage, ImageBuffer, Rgba};
+use crate::image::ImageFormat;
 use std::path::PathBuf;
 use std::result::Result;
 use std::str::FromStr;

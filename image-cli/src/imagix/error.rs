@@ -32,7 +32,7 @@ impl From<io::Error> for ImagixError {
     }
 }
 
-impl From<error::ImageError> for ImagixError {
+impl From<image::ImageError> for ImagixError {
     fn from(_error: error::ImageError) -> Self {
         ImagixError::ImageResizingError("Error in image processing".to_string())
     }
