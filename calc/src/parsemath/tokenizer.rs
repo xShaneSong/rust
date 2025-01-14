@@ -1,23 +1,13 @@
+#![allow(non_snake_case)]
+
 use std::iter::Peekable;
 use std::str::Chars;
 
-pub struct Tokenizer {
+use super::token::Token;
+
+pub struct Tokenizer<'a> {
     expr: Peekable<Chars<'a>>,
 }
-
-#[derive(Debug)]
-pub enum Token {
-    Num(f64),
-    Add,
-    Subtract,
-    Multiply,
-    Divide,
-    Caret,
-    LeftParen,
-    RightParen,
-    Error(char),
-}
-
 
 impl<'a> Tokenizer<'a> {
     pub fn new(new_expr: &'a str) -> Self {
@@ -34,7 +24,8 @@ impl<'a> Iterator for Tokenizer<'a> {
         let next_char = self.expr.next();
         match next_char {
             Some('0' ..= '9') => {
-                let mut number = next_char.to_string();
+                let mut number = next_char?.to_string();
+
                 while let Some(next_char) = self.expr.peek() {
                     if next_char.is_numeric() || next_char == &'.' {
                         number.push(self.expr.next()?);
@@ -54,8 +45,8 @@ impl<'a> Iterator for Tokenizer<'a> {
             Some('^') => Some(Token::Caret),
             Some('(') => Some(Token::LeftParen),
             Some(')') => Some(Token::RightParen),
-            Some(c) => Some(Token::EOF),
-            None => None,
+            None => Some(Token::EOF),
+            Some(_) => None,
         }
     }
 }
