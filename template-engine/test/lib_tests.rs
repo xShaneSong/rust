@@ -14,13 +14,13 @@ fn check_literal_test() {
 #[test]
 fn check_template_variable_test() {
     let content = ExpressionData {
-        head: Some("Hi ".to_string()),
-        variable: " name ".to_string(),
-        tail: Some(" , welcome".to_string()),
+        expression: "Hi {{name}} , welcome".to_string(),
+        var_map: vec!["{{name}}".to_string()],
+        gen_html: "".to_string(),
     };
     assert_eq!(
         ContentType::TemplateVariable(content),
-        get_content_type("Hi {{ name }} , welcome")
+        get_content_type("Hi {{name}} , welcome")
     );
 }
 
@@ -52,10 +52,9 @@ fn check_symbol_pair_test() {
 #[test]
 fn check_get_expression_data_test() {
     let content = ExpressionData {
-        head: Some("Hi ".to_string()),
-        variable: " name ".to_string(),
-        tail: Some(" , welcome".to_string()),
+        expression: "Hi {{name}} , welcome".to_string(),
+        var_map: vec!["{{name}}".to_string()],
+        gen_html: "".to_string(),
     };
-    assert_eq!(content, get_expression_data("Hi {{ name }} , welcome"));
+    assert_eq!(content, get_expression_data("Hi {{name}} , welcome"));
 }
-
