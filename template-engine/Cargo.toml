@@ -1,0 +1,10 @@
+[package]
+name = "template-engine"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[test]]
+name = "lib_tests"
+path = "test/lib_tests.rs"
