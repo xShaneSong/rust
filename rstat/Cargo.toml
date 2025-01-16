@@ -1,0 +1,6 @@
+[package]
+name = "rstat"
+version = "0.1.0"
+
+[dependencies]
+structopt = "0.3.26"
