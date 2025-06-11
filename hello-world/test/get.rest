@@ -1,0 +1,11 @@
+### GET / Rest
+GET http://127.0.0.1:8080
+
+### GET /manual Rest
+GET http://127.0.0.1:8080/manual
+
+### GET /app/index.html Rest
+GET http://127.0.0.1:8080/app/index.html
+
+### GET /index Rest
+GET http://127.0.0.1:8080/state
