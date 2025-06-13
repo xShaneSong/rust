@@ -9,6 +9,7 @@ fn handle_client(mut stream: std::net::TcpStream) {
     stream.read(&mut [0; 1024])
             .unwrap_or_else(|e| {
                 eprintln!("Failed to read from stream: {}", e);
+                0
             });
 
     let message = b"Hello from the server!";
