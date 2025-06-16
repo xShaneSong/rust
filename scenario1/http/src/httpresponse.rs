@@ -99,10 +99,20 @@ mod tests {
 
     #[test]
     fn test_http_response_200() {
-        let response = HttpResponse::new("200", None, Some("Hello, World!".into()));
-        assert_eq!(response.status_code, "200");
-        assert_eq!(response.status_text, "OK");
-        assert_eq!(response.body.unwrap(), "Hello, World!");
+        // let response = HttpResponse::new("200", None, Some("Hello, World!".into()));
+        // assert_eq!(response.status_code, "200");
+        // assert_eq!(response.status_text, "OK");
+        // assert_eq!(response.body.unwrap(), "Hello, World!");
+
+        let response_actual = HttpResponse::new("200", None, Some("Hello, World!".into()));
+        let response_expected = HttpResponse {
+            version: "HTTP/1.1",
+            status_code: "200",
+            status_text: "OK",
+            headers: Some(HashMap::from([("Content-Type", "text/html")])),
+            body: Some("Hello, World!".into()),
+        };
+        assert_eq!(response_actual, response_expected);
     }
 
     #[test]
